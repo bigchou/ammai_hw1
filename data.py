@@ -7,7 +7,7 @@ from PIL import Image
 import torchvision.datasets as datasets
 
 
-def add_extension(self, path):
+def add_extension(path):
     # Support .jpg and .png only
     if os.path.exists(path + '.jpg'):
         return path + '.jpg'
