@@ -11,7 +11,9 @@ zip -F CASIA-maxpy-clean.zip --out CASIA-maxpy-clean_fix.zip
 unzip CASIA-maxpy-clean_fix.zip
 ~~~~
 
-# Step 2. Align Face
+## To obtain APD Dataset. Please see the homework slide.
+
+# Step 2. Align face based on the five keypoints and resize images to 224 * 224
 
 ## Obtain [face alignment tools](https://github.com/ZhaoJ9014/face.evoLVe.PyTorch)
 
@@ -19,13 +21,17 @@ unzip CASIA-maxpy-clean_fix.zip
 # Trainset Alignment
 git clone https://github.com/ZhaoJ9014/face.evoLVe.PyTorch.git
 cd face.evoLVe.PyTorch/align
-python face_align.py -source_root '/media/iis/ssdx16/casia-maxpy-clean/CASIA-maxpy-clean' -dest_root '/media/iis/ssdx16/casia-maxpy-clean/CASIA-maxpy-clean-aligned' -crop_size 224
+python face_align.py -source_root '/media/iis/ssdx16/CASIA-maxpy-clean' -dest_root '/media/iis/ssdx16/CASIA-maxpy-clean-aligned' -crop_size 224
 
-# Testset Alignment
-python testset_converter.py # convert test data folder structure
+# APD Dataset Alignment
+# Step 1. Change file structures of your raw data to fit alignment tool requirement.
+python A2A_.py # Input the folder named "A" and output the folder named "A_"
+# Step 2. Use alignment tools
 cd face.evoLVe.PyTorch/align
-python face_align.py -source_root '/media/iis/ssdx16/casia-maxpy-clean/A_' -dest_root '/media/iis/ssdx16/casia-maxpy-clean/A-aligned' -crop_size 224
-python A2C.py # move cropped files to folder named "C"
+python face_align.py -source_root '/media/iis/ssdx16/A_' -dest_root '/media/iis/ssdx16/A-aligned' -crop_size 224
+# Step 3. Change file structures of your aligned data to fit homework format
+cd ../..
+python A-aligned2C.py # Input the folder named "A-aligned" and output the folder named "C"
 ~~~~
 
 # Step 3. Train

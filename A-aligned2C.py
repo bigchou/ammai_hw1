@@ -1,5 +1,7 @@
 import os, shutil
 
+# Usage: Change file structures of your aligned data to fit homework format
+
 src = "A-aligned"
 dst = "C"
 if not os.path.exists(dst):
