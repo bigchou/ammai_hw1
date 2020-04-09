@@ -43,6 +43,11 @@ python face_align.py -source_root '/media/iis/ssdx16/A_' -dest_root '/media/iis/
 # Step 3. Change file structures of your aligned data to fit homework format
 cd ../..
 python A-aligned2C.py # Input the folder named "A-aligned" and output the folder named "C_224"
+
+# LFW Dataset Alignment (the raw data can be download via this link: "http://vis-www.cs.umass.edu/lfw/lfw.tgz")
+tar -xvf lfw.tgz
+cd face.evoLVe.PyTorch/align
+python face_align.py -source_root '/media/iis/ssdx16/lfw' -dest_root '/media/iis/ssdx16/lfw-aligned' -crop_size 224
 ~~~~
 
 # Step 3. Train
