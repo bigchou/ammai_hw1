@@ -6,7 +6,7 @@ import torch.optim as optim
 from metrics import TripletLoss
 from torchvision import datasets
 from roc import eval, plot_roc_lfw
-from modified_resnet import resnet18
+from modified_resnet import resnet18, resnet34
 from torch.nn.modules.distance import PairwiseDistance
 from data import data_transforms, APDDataset, TripletFaceDataset
 from torch.nn.functional import cosine_similarity, pairwise_distance
@@ -14,22 +14,22 @@ from torch.nn.functional import cosine_similarity, pairwise_distance
 
 """
 Data Requirements:
-1. train.csv
-2. training_triplets_100000.npy
-3. CASIA-maxpy-clean-aligned
-4. C
-5. positive_pairs.txt
-6. negative_pairs.txt
+1. summary.csv (summarize your training data, see summary.py) 
+3. CASIA-maxpy-clean-aligned (path to store CASIAWebFace dataset)
+4. C (path to store APD dataset for evaluation)
+5. positive_pairs.txt (evaluate APD)
+6. negative_pairs.txt (evaluate APD)
 
-Example:
-python main.py --resume 49.pth --inference --logfile softmax.txt --loss softmax --dist cosine --plotroc --figname softmax.png --outdir softmax
-python main.py --resume triplet.pth --inference --logfile triplet.txt --loss triplet --l2norm --dist l2 --plotroc --figname triplet.png --outdir triplet
-python main.py --resume m3.pth --inference --logfile sphereface.txt --loss sphereface --dist cosine --plotroc --figname sphereface.png --outdir sphereface
+Usage:
+# Inference
+python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile SoftmaxTest.txt --loss softmax --dist cosine --plotroc --figname Softmax.png --outdir Softmax
+python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile TripletTest.txt --loss triplet --l2norm --dist l2 --plotroc --figname Triplet.png --outdir Triplet
+python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile ASoftmaxTest.txt --loss sphereface --dist cosine --plotroc --figname ASoftmax.png --outdir ASoftmax
 
-
-python main.py --logfile softmax.txt --loss softmax --dist cosine --epoch 2 --batch 256 --outdir softmax
-python main.py --logfile triplet.txt --loss triplet --l2norm --dist l2 --epoch 2 --batch 128 --outdir triplet
-python main.py --logfile sphereface.txt --loss sphereface --dist cosine --batch 256 --epoch 2 --outdir sphereface
+# Training
+python main.py --logfile SoftmaxTrain.txt --loss softmax --dist cosine --batch 256 --outdir Softmax
+python main.py --logfile TripletTrain.txt --loss triplet --l2norm --dist l2 --batch 128 --outdir Triplet
+python main.py --logfile ASoftmaxTrain.txt --loss sphereface --dist cosine --batch 256 --outdir ASoftmax
 """
 # define supporting functions
 def save_model(model,filename):
@@ -43,10 +43,10 @@ def load_model(model,filename):
     return model
 
 # Arguments
-parser = argparse.ArgumentParser(description='[AMMAI] PyTorch Face Verification')
-parser.add_argument('--outdir',type=str,help="path to store output")
+parser = argparse.ArgumentParser(description='[AMMAI] APD Face Verification')
+parser.add_argument('--outdir',type=str,help="path to store output results")
 parser.add_argument('--resume', default='', type=str, help="resume from the checkpoint")
-parser.add_argument("--inference", action="store_true", help="enable inference mode")
+parser.add_argument("--inference", action="store_true", help="enable inference mode (default: False)")
 parser.add_argument("--epoch", default="50", type=int, help="#training epochs (default: 50)")
 parser.add_argument("--batch", default="256", type=int, help="batch size (default: 256)")
 parser.add_argument("--trainpath", default="CASIA-maxpy-clean-aligned", type=str, help="path to the training image folder")
@@ -54,14 +54,15 @@ parser.add_argument("--apdpath",default="C", type=str, help="path to the APD ima
 parser.add_argument("--logfile", default="log.txt", type=str, help="path to store logging file (default: log.txt)")
 parser.add_argument("--loss", default="softmax", type=str, choices=["softmax", "triplet", "sphereface"], help="cost function (default: softmax)")
 parser.add_argument("--lr", default="0.1", type=float, help="learning rate (default: 0.1)")
-parser.add_argument("--plotroc", action="store_true", help="enable plotting ROC curve")
-parser.add_argument('--figname', default="roc.png", type=str, help="path to output figure")
-parser.add_argument('--l2norm', action="store_true", help="apply l2-norm in the output of the model")
-parser.add_argument('--dist',default="cosine", type=str, choices=["l2","cosine"], help="distance measurement")
+parser.add_argument("--plotroc", action="store_true", help="enable plotting ROC curve (default: False)")
+parser.add_argument('--figname', default="roc.png", type=str, help="path to output figure (roc.png)")
+parser.add_argument('--l2norm', action="store_true", help="apply l2-norm in the output of the model (default: False)")
+parser.add_argument('--dist',default="cosine", type=str, choices=["l2","cosine"], help="distance measurement (default: cosine)")
+parser.add_argument('--arch',default='resnet18', type=str, choices=["resnet18","resnet34"], help="backbone (default: resnet18)")
 # TripletLoss-specific arguments
-parser.add_argument('--triplet_csv',default='triplet.csv', type=str, help="csv file containing triplet information")
-parser.add_argument('--training_triplets_path',default='training_triplets_100000.npy', type=str, help="*npy file containing preprocessed triplet")
-parser.add_argument('--num_triplets_train', default=100000, type=int, help="#triplets for training (default:100000)")
+parser.add_argument('--summary_csv',default='summary.csv', type=str, help="csv file used to summarize your training data")
+parser.add_argument('--training_triplets_path',default='training_triplets_450000.npy', type=str, help="npy file containing preprocessed triplet information")
+parser.add_argument('--num_triplets_train', default=450000, type=int, help="#triplets for training (default:450000)")
 parser.add_argument('--triplet_margin', default=0.5, type=float, help="triplet margin (default:0.5)")
 
 
@@ -73,6 +74,7 @@ if __name__ == "__main__":
         os.mkdir(args.outdir)
         print("create dir "+args.outdir)
     args.logfile = os.path.join(args.outdir,args.logfile)
+    args.figname = os.path.join(args.outdir,args.figname)
     with open(args.logfile,"w",encoding="utf-8") as f:
         f.write("\n".join(sys.argv[1:]))
         f.write("\n===============================\n")
@@ -83,7 +85,7 @@ if __name__ == "__main__":
     if args.loss == "triplet":
         trainset = TripletFaceDataset(
             root_dir=args.trainpath,
-            csv_name=args.triplet_csv,
+            csv_name=args.summary_csv,
             num_triplets=args.num_triplets_train,
             training_triplets_path=args.training_triplets_path if args.training_triplets_path else None,
             transform=data_transforms['train']
@@ -104,7 +106,10 @@ if __name__ == "__main__":
     valloader = DataLoader(valset, batch_size=args.batch, shuffle=False, num_workers=8, pin_memory=True)
 
     # Model
-    model = resnet18(pretrained=False,loss_fn=args.loss,num_classes=256 if args.loss=="triplet" else num_class)
+    if args.arch == "resnet18":
+        model = resnet18(pretrained=False,loss_fn=args.loss,num_classes=256 if args.loss=="triplet" else num_class)
+    else:
+        model = resnet34(pretrained=False,loss_fn=args.loss,num_classes=256 if args.loss=="triplet" else num_class)
 
     # Resume
     if args.resume:
@@ -130,7 +135,7 @@ if __name__ == "__main__":
     # Main
     print("===== START =====")
     for epoch in range(args.epoch):
-        # ===== Train =====
+        # ===== Train ============================================================
         if not args.inference:
             model.train()
             if args.loss == "triplet":
@@ -180,6 +185,8 @@ if __name__ == "__main__":
                         msg = "EPOCH %d, ITER %d, LOSS: %.4f"%(epoch,batch_idx,loss.item())
                         print(msg)
                         with open(args.logfile,"a",encoding="utf-8") as f: f.write(msg+"\n")
+        save_model(model,filename="%s/%d.pth"%(args.outdir,epoch))# Save
+        if args.loss != "triplet": scheduler.step()# Update scheduler
 
         # ===== Eval AUC ===========================================
         records = []
@@ -213,11 +220,6 @@ if __name__ == "__main__":
         with open(args.logfile,"a",encoding="utf-8") as f: f.write("roc_auc: %f\n"%(roc_auc))
         if args.inference: break
         # ===========================================================
-
-        # Save
-        save_model(model,filename="%s/%d.pth"%(args.outdir,epoch))
-        # Update scheduler
-        scheduler.step()
 
 
         
