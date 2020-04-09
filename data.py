@@ -4,6 +4,17 @@ from torch.utils.data import Dataset
 import pandas as pd
 import numpy as np
 from PIL import Image
+import torchvision.datasets as datasets
+
+
+def add_extension(self, path):
+    # Support .jpg and .png only
+    if os.path.exists(path + '.jpg'):
+        return path + '.jpg'
+    elif os.path.exists(path + '.png'):
+        return path + '.png'
+    else:
+        raise RuntimeError('No file "%s" with extension png or jpg.' % path)
 
 # Preprocessing
 data_transforms = {
@@ -162,9 +173,9 @@ class TripletFaceDataset(Dataset):
         
         anc_id, pos_id, neg_id, pos_class, neg_class, pos_name, neg_name = self.training_triplets[idx]
         
-        anc_img   = self.add_extension(os.path.join(self.root_dir, str(pos_name), str(anc_id)))
-        pos_img   = self.add_extension(os.path.join(self.root_dir, str(pos_name), str(pos_id)))
-        neg_img   = self.add_extension(os.path.join(self.root_dir, str(neg_name), str(neg_id)))
+        anc_img   = add_extension(os.path.join(self.root_dir, str(pos_name), str(anc_id)))
+        pos_img   = add_extension(os.path.join(self.root_dir, str(pos_name), str(pos_id)))
+        neg_img   = add_extension(os.path.join(self.root_dir, str(neg_name), str(neg_id)))
         
         # Modified to open as PIL image in the first place
         anc_img   = Image.open(anc_img)
@@ -180,14 +191,66 @@ class TripletFaceDataset(Dataset):
             sample['anc_img'] = self.transform(sample['anc_img'])
             sample['pos_img'] = self.transform(sample['pos_img'])
             sample['neg_img'] = self.transform(sample['neg_img'])
-            
         return sample
 
-    def add_extension(self, path):
-        # Support .jpg and .png only
-        if os.path.exists(path + '.jpg'):
-            return path + '.jpg'
-        elif os.path.exists(path + '.png'):
-            return path + '.png'
-        else:
-            raise RuntimeError('No file "%s" with extension png or jpg.' % path)
+class LFWDataset(datasets.ImageFolder):
+    def __init__(self, dir, pairs_path="LFW_pairs.txt", transform=None):
+        super(LFWDataset, self).__init__(dir, transform)
+        self.pairs_path = pairs_path
+        self.validation_images = self.get_lfw_paths(dir)
+
+    def read_lfw_pairs(self, pairs_filename):
+        pairs = []
+        with open(pairs_filename, 'r') as f:
+            for line in f.readlines()[1:]:
+                pair = line.strip().split()
+                pairs.append(pair)
+        return np.array(pairs)
+
+    def get_lfw_paths(self, lfw_dir):
+        pairs = self.read_lfw_pairs(self.pairs_path)
+
+        nrof_skipped_pairs = 0
+        path_list = []
+        issame_list = []
+        for pair in pairs:
+            if len(pair) == 3:
+                path0 = add_extension(os.path.join(lfw_dir, pair[0], pair[0] + '_' + '%04d' % int(pair[1])))
+                path1 = add_extension(os.path.join(lfw_dir, pair[0], pair[0] + '_' + '%04d' % int(pair[2])))
+                issame = True
+            elif len(pair) == 4:
+                path0 = add_extension(os.path.join(lfw_dir, pair[0], pair[0] + '_' + '%04d' % int(pair[1])))
+                path1 = add_extension(os.path.join(lfw_dir, pair[2], pair[2] + '_' + '%04d' % int(pair[3])))
+                issame = False
+            if os.path.exists(path0) and os.path.exists(path1):  # Only add the pair if both paths exist
+                path_list.append((path0, path1, issame))
+                issame_list.append(issame)
+            else:
+                nrof_skipped_pairs += 1
+        if nrof_skipped_pairs > 0:
+            print('Skipped %d image pairs' % nrof_skipped_pairs)
+        return path_list
+
+
+    def __getitem__(self, index):
+        """
+        Args:
+            index: Index of the triplet or the matches - not of a single image
+        Returns:
+        """
+
+        def transform(img_path):
+            """Convert image into numpy array and apply transformation
+               Doing this so that it is consistent with all other datasets
+               to return a PIL Image.
+            """
+
+            img = self.loader(img_path)
+            return self.transform(img)
+
+        (path_1, path_2, issame) = self.validation_images[index]
+        img1, img2 = transform(path_1), transform(path_2)
+        return img1, img2, issame
+
+    def __len__(self):
+        return len(self.validation_images)
