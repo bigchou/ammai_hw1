@@ -19,12 +19,42 @@ Data Requirements:
 4. negative_pairs.txt (evaluate APD)
 6. LFW_pairs.txt (evaluate LFW)
 
-
 Usage:
 # Inference
-python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile SoftmaxTest.txt --loss softmax --dist cosine --plotroc --figname Softmax.png --outdir Softmax
-python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile TripletTest.txt --loss triplet --l2norm --dist l2 --plotroc --figname Triplet.png --outdir Triplet
-python main.py --resume path/to/ckpt --arch resnet18 --inference --logfile ASoftmaxTest.txt --loss sphereface --dist cosine --plotroc --figname ASoftmax.png --outdir ASoftmax
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --plotroc --figname C_224.png --outdir SoftmaxResNet34 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --plotroc --figname C.png --outdir SoftmaxResNet34 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet34 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname C_224.png --outdir SoftmaxResNet18 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname C.png --outdir SoftmaxResNet18 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet18 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+
+
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --plotroc --figname C_224.png --outdir ASoftmaxResNet18 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --plotroc --figname C.png --outdir ASoftmaxResNet18 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet18 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --plotroc --figname C_224.png --outdir ASoftmaxResNet34 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --plotroc --figname C.png --outdir ASoftmaxResNet34 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet34 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+
+
+
+
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2 --l2norm --plotroc --figname C_224.png --outdir TripletResNet34 --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2 --l2norm --plotroc --figname C.png --outdir TripletResNet34 --logfile C.txt --testdb C
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir TripletResNet34 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname C_224.png --outdir TripletResNet18 --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname C.png --outdir TripletResNet18 --logfile C.txt --testdb C
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir TripletResNet18 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
 """
 parser = argparse.ArgumentParser(description='[AMMAI] APD Face Verification [EVAL]')
 # choose testing datset
@@ -36,6 +66,7 @@ parser.add_argument("--logfile", default="log.txt", type=str, help="path to stor
 parser.add_argument("--plotroc", action="store_true", help="enable plotting ROC curve (default: False)")
 parser.add_argument('--figname', default="roc.png", type=str, help="path to output figure (roc.png)")
 # model config
+parser.add_argument("--batch", default="256", type=int, help="batch size (default: 256)")
 parser.add_argument('--arch',default='resnet18', type=str, choices=["resnet18","resnet34"], help="backbone (default: resnet18)")
 parser.add_argument('--resume', default='', type=str, help="resume from the checkpoint")
 parser.add_argument("--loss", default="softmax", type=str, choices=["softmax", "triplet", "sphereface"], help="cost function (default: softmax)")
@@ -46,6 +77,8 @@ if __name__ == "__main__":
     # Log arguments
     args = parser.parse_args()
     print(args)
+    if not os.path.isdir(args.testdb):
+        raise Exception("%s is not found"%(args.testdb))
     if not os.path.isdir(args.outdir):
         os.mkdir(args.outdir)
         print("create dir "+args.outdir)
@@ -63,7 +96,7 @@ if __name__ == "__main__":
         model = resnet34(pretrained=False,loss_fn=args.loss,num_classes=256 if args.loss=="triplet" else 10575)
     if args.resume:
         print("ready to load "+args.resume)
-        model = model.load_state_dict(torch.load(filename))
+        model.load_state_dict(torch.load(args.resume))
     # GPU
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model = model.to(device)
@@ -83,8 +116,8 @@ if __name__ == "__main__":
         for idx, tmp in enumerate(valloader):
             #tmp = (name1, img1, name2, img2, issame)
             issame = tmp[-1].numpy().astype(bool)#bool
-            img1 = tmp[1].to(device)
-            img2 = tmp[3].to(device)
+            img1 = tmp[1].to(device) if len(tmp) == 5 else tmp[0].to(device)
+            img2 = tmp[3].to(device) if len(tmp) == 5 else tmp[1].to(device)
             # Extract feature
             feat1 = model(img1,featmod=True,l2norm=args.l2norm)#torch.Size([batch, dim, 1, 1])
             feat2 = model(img2,featmod=True,l2norm=args.l2norm)#torch.Size([batch, dim, 1, 1])
