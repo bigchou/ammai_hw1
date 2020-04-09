@@ -1,5 +1,16 @@
 # AMMAI HW1 APD FACE VERIFICATION
 
+# Step 0. Installation
+
+#### Testing Environment: Python 3.5.2
+
+#### Install Dependencies
+
+~~~~
+pip install requirements.txt
+~~~~
+
+
 # Step 1. Obtain Dataset: [CASIA WebFace](https://drive.google.com/file/d/1wJC2aPA4AC0rI-tAL2BFs2M8vfcpX-w6/view?usp=sharing)
 
 ## unzip CASIA-WebFace clean version with following commands:
