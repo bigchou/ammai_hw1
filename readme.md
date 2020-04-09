@@ -42,7 +42,7 @@ cd face.evoLVe.PyTorch/align
 python face_align.py -source_root '/media/iis/ssdx16/A_' -dest_root '/media/iis/ssdx16/A-aligned' -crop_size 224
 # Step 3. Change file structures of your aligned data to fit homework format
 cd ../..
-python A-aligned2C.py # Input the folder named "A-aligned" and output the folder named "C"
+python A-aligned2C.py # Input the folder named "A-aligned" and output the folder named "C_224"
 ~~~~
 
 # Step 3. Train

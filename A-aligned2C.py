@@ -3,7 +3,7 @@ import os, shutil
 # Usage: Change file structures of your aligned data to fit homework format
 
 src = "A-aligned"
-dst = "C"
+dst = "C_224"
 if not os.path.exists(dst):
     os.mkdir(dst)
 
