@@ -198,6 +198,7 @@ class LFWDataset(datasets.ImageFolder):
         super(LFWDataset, self).__init__(dir, transform)
         self.pairs_path = pairs_path
         self.validation_images = self.get_lfw_paths(dir)
+        print("#pairs: %d"%(len(self.validation_images)))
 
     def read_lfw_pairs(self, pairs_filename):
         pairs = []

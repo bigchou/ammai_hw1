@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.metrics import auc
 import matplotlib.pyplot as plt
+import pickle, os
 
 def calculate_metrics(threshold, dist, actual_issame):
     # If distance is less than threshold, then prediction is set to True
@@ -55,6 +56,8 @@ def plot_roc_lfw(false_positive_rate, true_positive_rate, figure_name="roc.png")
     plt.plot(
         false_positive_rate, true_positive_rate, color='red', lw=2, label="ROC Curve (area = {:.4f})".format(roc_auc)
     )
+    data = {"fpr":false_positive_rate,"tpr":true_positive_rate,"auc":roc_auc}
+    with open(os.path.splitext(figure_name)[0]+".pkl","wb") as f: pickle.dump(data,f)
     plt.plot([0, 1], [0, 1], color="blue", lw=2, linestyle="--", label="Random")
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
