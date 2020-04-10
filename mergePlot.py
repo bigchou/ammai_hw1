@@ -3,9 +3,16 @@ import matplotlib.pyplot as plt
 
 """
 # Usage:
-python mergePlot.py --pkllist SoftmaxResNet34/C.pkl,ASoftmaxResNet34/C.pkl,TripletResNet34/C.pkl --out C.png
-python mergePlot.py --pkllist SoftmaxResNet34/C_224.pkl,ASoftmaxResNet34/C_224.pkl,TripletResNet34/C_224.pkl --out C_224.png
-python mergePlot.py --pkllist SoftmaxResNet34/lfw-aligned.pkl,ASoftmaxResNet34/lfw-aligned.pkl,TripletResNet34/lfw-aligned.pkl --out lfw-aligned.png
+python mergePlot.py --pkllist SoftmaxResNet34/C.pkl,ASoftmaxResNet34/C.pkl,TripletResNet34/C.pkl --out ResNet34_C.png
+python mergePlot.py --pkllist SoftmaxResNet34/C_224.pkl,ASoftmaxResNet34/C_224.pkl,TripletResNet34/C_224.pkl --out ResNet34_C_224.png
+python mergePlot.py --pkllist SoftmaxResNet34/lfw-aligned.pkl,ASoftmaxResNet34/lfw-aligned.pkl,TripletResNet34/lfw-aligned.pkl --out ResNet34_lfw-aligned.png
+
+
+python mergePlot.py --pkllist SoftmaxResNet18/C.pkl,ASoftmaxResNet18/C.pkl,TripletResNet18/C.pkl --out ResNet18_C.png
+python mergePlot.py --pkllist SoftmaxResNet18/C_224.pkl,ASoftmaxResNet18/C_224.pkl,TripletResNet18/C_224.pkl --out ResNet18_C_224.png
+python mergePlot.py --pkllist SoftmaxResNet18/lfw-aligned.pkl,ASoftmaxResNet18/lfw-aligned.pkl,TripletResNet18/lfw-aligned.pkl --out ResNet18_lfw-aligned.png
+
+
 """
 
 parser = argparse.ArgumentParser(description='[AMMAI] Plot Merger')

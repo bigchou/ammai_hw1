@@ -25,10 +25,44 @@ python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --los
 python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --plotroc --figname C.png --outdir SoftmaxResNet34 --logfile C.txt --testdb C
 python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet34 --logfile lfw-aligned.txt --testdb lfw-aligned
 
-
 python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname C_224.png --outdir SoftmaxResNet18 --logfile C_224.txt --testdb C_224
 python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname C.png --outdir SoftmaxResNet18 --logfile C.txt --testdb C
 python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet18 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --l2norm --plotroc --figname C_224.png --outdir SoftmaxResNet34_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --l2norm --plotroc --figname C.png --outdir SoftmaxResNet34_l2 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet34_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --l2norm --plotroc --figname C_224.png --outdir SoftmaxResNet18_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --l2norm --plotroc --figname C.png --outdir SoftmaxResNet18_l2 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet18_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2 --l2norm --plotroc --figname C_224.png --outdir SoftmaxResNet34_l2_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2 --l2norm --plotroc --figname C.png --outdir SoftmaxResNet34_l2_l2 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet34_l2_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2 --l2norm --plotroc --figname C_224.png --outdir SoftmaxResNet18_l2_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2 --l2norm --plotroc --figname C.png --outdir SoftmaxResNet18_l2_l2 --logfile C.txt --testdb C
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet18_l2_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2  --plotroc --figname C_224.png --outdir SoftmaxResNet34_l2dist --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2  --plotroc --figname C.png --outdir SoftmaxResNet34_l2dist --logfile C.txt --testdb C
+python test.py --resume softmax_resnet34_withoutl2norm.pth --arch resnet34 --loss softmax --dist l2  --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet34_l2dist --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2  --plotroc --figname C_224.png --outdir SoftmaxResNet18_l2dist --logfile C_224.txt --testdb C_224
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2  --plotroc --figname C.png --outdir SoftmaxResNet18_l2dist --logfile C.txt --testdb C
+python test.py --resume softmax_resnet18_withoutl2norm.pth --arch resnet18 --loss softmax --dist l2  --plotroc --figname lfw-aligned.png --outdir SoftmaxResNet18_l2dist --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,6 +76,42 @@ python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface 
 python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet34 --logfile lfw-aligned.txt --testdb lfw-aligned
 
 
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --l2norm --plotroc --figname C_224.png --outdir ASoftmaxResNet18_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --l2norm --plotroc --figname C.png --outdir ASoftmaxResNet18_l2 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet18_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --l2norm --plotroc --figname C_224.png --outdir ASoftmaxResNet34_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --l2norm --plotroc --figname C.png --outdir ASoftmaxResNet34_l2 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet34_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2 --l2norm --plotroc --figname C_224.png --outdir ASoftmaxResNet18_l2_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2 --l2norm --plotroc --figname C.png --outdir ASoftmaxResNet18_l2_l2 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet18_l2_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2 --l2norm --plotroc --figname C_224.png --outdir ASoftmaxResNet34_l2_l2 --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2 --l2norm --plotroc --figname C.png --outdir ASoftmaxResNet34_l2_l2 --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet34_l2_l2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2  --plotroc --figname C_224.png --outdir ASoftmaxResNet18_l2dist --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2  --plotroc --figname C.png --outdir ASoftmaxResNet18_l2dist --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet18.pth --arch resnet18 --loss sphereface --dist l2  --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet18_l2dist --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2  --plotroc --figname C_224.png --outdir ASoftmaxResNet34_l2dist --logfile C_224.txt --testdb C_224
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2  --plotroc --figname C.png --outdir ASoftmaxResNet34_l2dist --logfile C.txt --testdb C
+python test.py --resume asoftmax_resnet34.pth --arch resnet34 --loss sphereface --dist l2  --plotroc --figname lfw-aligned.png --outdir ASoftmaxResNet34_l2dist --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -53,6 +123,33 @@ python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --di
 python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname C_224.png --outdir TripletResNet18 --logfile C_224.txt --testdb C_224
 python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname C.png --outdir TripletResNet18 --logfile C.txt --testdb C
 python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2 --l2norm --plotroc --figname lfw-aligned.png --outdir TripletResNet18 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2  --plotroc --figname C_224.png --outdir TripletResNet34_nol2 --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2  --plotroc --figname C.png --outdir TripletResNet34_nol2 --logfile C.txt --testdb C
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist l2  --plotroc --figname lfw-aligned.png --outdir TripletResNet34_nol2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2  --plotroc --figname C_224.png --outdir TripletResNet18_nol2 --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2  --plotroc --figname C.png --outdir TripletResNet18_nol2 --logfile C.txt --testdb C
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist l2  --plotroc --figname lfw-aligned.png --outdir TripletResNet18_nol2 --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine  --plotroc --figname C_224.png --outdir TripletResNet34_nol2_cos --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine  --plotroc --figname C.png --outdir TripletResNet34_nol2_cos --logfile C.txt --testdb C
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine  --plotroc --figname lfw-aligned.png --outdir TripletResNet34_nol2_cos --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine  --plotroc --figname C_224.png --outdir TripletResNet18_nol2_cos --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine  --plotroc --figname C.png --outdir TripletResNet18_nol2_cos --logfile C.txt --testdb C
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine  --plotroc --figname lfw-aligned.png --outdir TripletResNet18_nol2_cos --logfile lfw-aligned.txt --testdb lfw-aligned
+
+
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine --l2norm --plotroc --figname C_224.png --outdir TripletResNet34_l2_cos --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine --l2norm --plotroc --figname C.png --outdir TripletResNet34_l2_cos --logfile C.txt --testdb C
+python test.py --resume triplet_resnet34.pth --arch resnet34 --loss triplet --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir TripletResNet34_l2_cos --logfile lfw-aligned.txt --testdb lfw-aligned
+
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine --l2norm --plotroc --figname C_224.png --outdir TripletResNet18_l2_cos --logfile C_224.txt --testdb C_224
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine --l2norm --plotroc --figname C.png --outdir TripletResNet18_l2_cos --logfile C.txt --testdb C
+python test.py --resume triplet_resnet18.pth --arch resnet18 --loss triplet --dist cosine --l2norm --plotroc --figname lfw-aligned.png --outdir TripletResNet18_l2_cos --logfile lfw-aligned.txt --testdb lfw-aligned
 
 
 """
