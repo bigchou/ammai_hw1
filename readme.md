@@ -80,7 +80,7 @@ bash test.sh
 |---------------|:---------------------------:|--------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
 
 
 |               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
