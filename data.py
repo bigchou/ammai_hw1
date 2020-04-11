@@ -108,7 +108,13 @@ class TripletFaceDataset(Dataset):
         self.df = pd.read_csv(csv_name, dtype={'id': object, 'name': object, 'class': int})
         self.num_triplets      = num_triplets
         self.transform         = transform
-        self.training_triplets = self.generate_triplets(self.df, self.num_triplets) if training_triplets_path is None else np.load(training_triplets_path)
+        if training_triplets_path:
+            if os.path.exists(training_triplets_path):
+                self.training_triplets = np.load(training_triplets_path)
+            else:
+                self.training_triplets = self.generate_triplets(self.df, self.num_triplets)
+        else:
+            self.training_triplets = self.generate_triplets(self.df, self.num_triplets)
 
     @staticmethod
     def generate_triplets(df, num_triplets):

@@ -51,4 +51,9 @@ python face_align.py -source_root '/media/iis/ssdx16/lfw' -dest_root '/media/iis
 ~~~~
 
 # Step 3. Train
-bash run.sh
+
+### Before training, you should check the training set named "CASIA-maxpy-clean-aligned" and the testing set named "C" (or "C_224") exists. Then, run the following scripts: 
+
+~~~~
+bash train.sh
+~~~~

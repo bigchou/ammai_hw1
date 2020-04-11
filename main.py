@@ -87,7 +87,7 @@ if __name__ == "__main__":
             root_dir=args.trainpath,
             csv_name=args.summary_csv,
             num_triplets=args.num_triplets_train,
-            training_triplets_path=args.training_triplets_path if args.training_triplets_path else None,
+            training_triplets_path=args.training_triplets_path,
             transform=data_transforms['train']
         )
         trainloader = DataLoader(trainset, batch_size=args.batch, shuffle=True, num_workers=8, pin_memory=True)
