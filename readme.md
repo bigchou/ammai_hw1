@@ -76,47 +76,35 @@ bash test.sh
 
 ## APD 256 x 256
 
-|               |  ResNet-18 with l2 dist.    |  ResNet-34 with l2 dist.  |
-|---------------|:---------------------------:|--------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
-
-
-|               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
-|---------------|:-------------------------------:|------------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
+|                 |  ResNet-18                    |  ResNet-34                |
+|-----------------|:-----------------------------:|--------------------------:|
+| L2 distance     | <img src="figure/ResNet18_C_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_l2dist.png" width="320" heigt="240"> |
+| Cosine distance | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
 
 
 ## APD 224 x 224
 
-|               |  ResNet-18 with l2 dist.    |  ResNet-34 with l2 dist.  |
-|---------------|:---------------------------:|--------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
-
-
-|               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
-|---------------|:-------------------------------:|------------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
+|                 |  ResNet-18                    |  ResNet-34                |
+|-----------------|:-----------------------------:|--------------------------:|
+| L2 distance     | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
+| Cosine distance | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
 
 
 ## LFW 224 x 224
 
-|               |  ResNet-18 with l2 dist.    |  ResNet-34 with l2 dist.  |
-|---------------|:---------------------------:|--------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
+|                 |  ResNet-18                    |  ResNet-34                |
+|-----------------|:-----------------------------:|--------------------------:|
+| L2 distance     | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
+| Cosine distance | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
 
 
-|               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
-|---------------|:-------------------------------:|------------------------------:|
-| Softmax-only  | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
-| ASoftmax(m=3) | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
+# Reference
+
+1. Yi, Dong, et al. "Learning face representation from scratch." arXiv 2014.
+2. Ranjan et al., “Deep Learning for Understanding Faces: Machines May Be Just as Good, or Better, than Humans”. IEEE Signal Processing Magazine 2018.
+3. Zhang, Kaipeng, et al. "Joint face detection and alignment using multitask cascaded convolutional networks." IEEE Signal Processing Letters 23.10 (2016): 1499-1503.
+4. https://github.com/ZhaoJ9014/face.evoLVe.PyTorch
+5. Liu, Weiyang, et al. "Sphereface: Deep hypersphere embedding for face recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.
+6. Schroff, Florian, Dmitry Kalenichenko, and James Philbin. "Facenet: A unified embedding for face recognition and clustering." Proceedings of the IEEE conference on computer vision and pattern recognition. 2015.
+7. https://github.com/tamerthamoqa/facenet-pytorch-vggface2
+8. https://github.com/liorshk/facenet_pytorch
