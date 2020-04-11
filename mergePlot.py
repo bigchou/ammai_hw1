@@ -3,15 +3,24 @@ import matplotlib.pyplot as plt
 
 """
 # Usage:
-python mergePlot.py --pkllist SoftmaxResNet34/C.pkl,ASoftmaxResNet34/C.pkl,TripletResNet34/C.pkl --out ResNet34_C.png
-python mergePlot.py --pkllist SoftmaxResNet34/C_224.pkl,ASoftmaxResNet34/C_224.pkl,TripletResNet34/C_224.pkl --out ResNet34_C_224.png
-python mergePlot.py --pkllist SoftmaxResNet34/lfw-aligned.pkl,ASoftmaxResNet34/lfw-aligned.pkl,TripletResNet34/lfw-aligned.pkl --out ResNet34_lfw-aligned.png
+
+python mergePlot.py --pkllist SoftmaxResNet18_cosdist/C_224.pkl,SoftmaxResNet18_cosdist_l2norm/C_224.pkl,SoftmaxResNet18_l2dist/C_224.pkl,SoftmaxResNet18_l2dist_l2norm/C_224.pkl --out SoftmaxResNet18_dist_norm.png
+python mergePlot.py --pkllist ASoftmaxResNet18_cosdist/C_224.pkl,ASoftmaxResNet18_cosdist_l2norm/C_224.pkl,ASoftmaxResNet18_l2dist/C_224.pkl,ASoftmaxResNet18_l2dist_l2norm/C_224.pkl --out ASoftmaxResNet18_dist_norm.png
+python mergePlot.py --pkllist TripletResNet18_cosdist/C_224.pkl,TripletResNet18_cosdist_l2norm/C_224.pkl,TripletResNet18_l2dist/C_224.pkl,TripletResNet18_l2dist_l2norm/C_224.pkl --out TripletResNet18_dist_norm.png
+
+python mergePlot.py --pkllist SoftmaxResNet34_cosdist/C_224.pkl,SoftmaxResNet34_cosdist_l2norm/C_224.pkl,SoftmaxResNet34_l2dist/C_224.pkl,SoftmaxResNet34_l2dist_l2norm/C_224.pkl --out SoftmaxResNet34_dist_norm.png
+python mergePlot.py --pkllist ASoftmaxResNet34_cosdist/C_224.pkl,ASoftmaxResNet34_cosdist_l2norm/C_224.pkl,ASoftmaxResNet34_l2dist/C_224.pkl,ASoftmaxResNet34_l2dist_l2norm/C_224.pkl --out ASoftmaxResNet34_dist_norm.png
+python mergePlot.py --pkllist TripletResNet34_cosdist/C_224.pkl,TripletResNet34_cosdist_l2norm/C_224.pkl,TripletResNet34_l2dist/C_224.pkl,TripletResNet34_l2dist_l2norm/C_224.pkl --out TripletResNet34_dist_norm.png
 
 
-python mergePlot.py --pkllist SoftmaxResNet18/C.pkl,ASoftmaxResNet18/C.pkl,TripletResNet18/C.pkl --out ResNet18_C.png
-python mergePlot.py --pkllist SoftmaxResNet18/C_224.pkl,ASoftmaxResNet18/C_224.pkl,TripletResNet18/C_224.pkl --out ResNet18_C_224.png
-python mergePlot.py --pkllist SoftmaxResNet18/lfw-aligned.pkl,ASoftmaxResNet18/lfw-aligned.pkl,TripletResNet18/lfw-aligned.pkl --out ResNet18_lfw-aligned.png
+python mergePlot.py --pkllist SoftmaxResNet18_cosdist/C_224.pkl,SoftmaxResNet18_cosdist_l2norm/C_224.pkl,ASoftmaxResNet18_cosdist/C_224.pkl,ASoftmaxResNet18_cosdist_l2norm/C_224.pkl,TripletResNet18_cosdist/C_224.pkl,TripletResNet18_cosdist_l2norm/C_224.pkl --out C_224_cosdist.png
+python mergePlot.py --pkllist SoftmaxResNet18_cosdist/C.pkl,SoftmaxResNet18_cosdist_l2norm/C.pkl,ASoftmaxResNet18_cosdist/C.pkl,ASoftmaxResNet18_cosdist_l2norm/C.pkl,TripletResNet18_cosdist/C.pkl,TripletResNet18_cosdist_l2norm/C.pkl --out C_cosdist.png
+python mergePlot.py --pkllist SoftmaxResNet18_cosdist/lfw-aligned.pkl,SoftmaxResNet18_cosdist_l2norm/lfw-aligned.pkl,ASoftmaxResNet18_cosdist/lfw-aligned.pkl,ASoftmaxResNet18_cosdist_l2norm/lfw-aligned.pkl,TripletResNet18_cosdist/lfw-aligned.pkl,TripletResNet18_cosdist_l2norm/lfw-aligned.pkl --out lfw_cosdist.png
 
+
+python mergePlot.py --pkllist SoftmaxResNet18_l2dist/C_224.pkl,SoftmaxResNet18_l2dist_l2norm/C_224.pkl,ASoftmaxResNet18_l2dist/C_224.pkl,ASoftmaxResNet18_l2dist_l2norm/C_224.pkl,TripletResNet18_l2dist/C_224.pkl,TripletResNet18_l2dist_l2norm/C_224.pkl --out C_224_l2dist.png
+python mergePlot.py --pkllist SoftmaxResNet18_l2dist/C.pkl,SoftmaxResNet18_l2dist_l2norm/C.pkl,ASoftmaxResNet18_l2dist/C.pkl,ASoftmaxResNet18_l2dist_l2norm/C.pkl,TripletResNet18_l2dist/C.pkl,TripletResNet18_l2dist_l2norm/C.pkl --out C_l2dist.png
+python mergePlot.py --pkllist SoftmaxResNet18_l2dist/lfw-aligned.pkl,SoftmaxResNet18_l2dist_l2norm/lfw-aligned.pkl,ASoftmaxResNet18_l2dist/lfw-aligned.pkl,ASoftmaxResNet18_l2dist_l2norm/lfw-aligned.pkl,TripletResNet18_l2dist/lfw-aligned.pkl,TripletResNet18_l2dist_l2norm/lfw-aligned.pkl --out lfw_l2dist.png
 
 """
 
