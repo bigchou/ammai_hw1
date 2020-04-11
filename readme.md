@@ -87,7 +87,7 @@ bash test.sh
 |---------------|:-------------------------------:|------------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_C_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_cosdist.png" width="320" heigt="240"> |
 
 
 ## APD 224 x 224
@@ -96,14 +96,14 @@ bash test.sh
 |---------------|:---------------------------:|--------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_C_224_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_l2dist.png" width="320" heigt="240"> |
 
 
 |               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
 |---------------|:-------------------------------:|------------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_C_224_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_C_224_cosdist.png" width="320" heigt="240"> |
 
 
 ## LFW 224 x 224
@@ -112,11 +112,11 @@ bash test.sh
 |---------------|:---------------------------:|--------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240">   | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_lfw_l2dist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_l2dist.png" width="320" heigt="240"> |
 
 
 |               |  ResNet-18 with cosine dist.    |  ResNet-34 with cosine dist.  |
 |---------------|:-------------------------------:|------------------------------:|
 | Softmax-only  | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
 | ASoftmax(m=3) | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240">   | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
-| Triplet Loss  | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> |
+| Triplet Loss  | <img src="figure/ResNet18_lfw_cosdist.png" width="320" heigt="240"> | <img src="figure/ResNet34_lfw_cosdist.png" width="320" heigt="240"> |
